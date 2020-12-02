@@ -13,7 +13,7 @@ class HomeController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('auth');
+//        $this->middleware('auth');
     }
 
     /**
@@ -25,4 +25,26 @@ class HomeController extends Controller
     {
         return view('home');
     }
+
+    public function indexSoup()
+    {
+        return view('home_soupculture');
+    }
+
+    public function menuSoup()
+    {
+        return view('menu');
+    }
+
+    public function deliverySoup()
+    {
+        return view('delivery');
+    }
+
+    public function aboutSoup()
+    {
+        return view('about');
+    }
+
+
 }
