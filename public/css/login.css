@@ -1,0 +1,211 @@
+#login_wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    border: 2px solid #b5692a;
+    border-radius: 36px;
+    width: 720px;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 50px 0 50px 0;
+}
+
+.form_group_login {
+    /*margin-right: 140px;*/
+    margin-top: 15px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.form_group_login div:nth-child(1) {
+    width: 255px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+}
+
+.form_group_login label {
+    margin-right: 10px;
+}
+
+.form_group_login input[type="text"],
+.form_group_login input[type="email"],
+.form_group_login input[type="password"] {
+    width: 330px;
+    height: 40px;
+    border: 2px solid #b5692a;
+    border-radius: 8px;
+    background-color: #a05d26;
+    font-size: 20px;
+    font-family: MyUbuntu, sans-serif;
+    color: #fff;
+    padding: 0 8px 0 8px;
+}
+
+.form_group_login input:focus {
+    outline: none;
+}
+
+/*#remember_me_group {*/
+/*    width: 350px;*/
+/*}*/
+
+.form_group_login input[type="checkbox"] {
+    visibility: hidden;
+    width: 0;
+    height: 0;
+    margin: 0;
+    /*border: 2px solid #b5692a;*/
+    /*border-radius: 8px;*/
+    /*background-color: #a05d26;*/
+}
+
+.form_group_login input[type="checkbox"] + label:before {
+    border: 2px solid #b5692a;
+    border-radius: 4px;
+    content: "\00a0";
+    display: inline-block;
+    font: 20px/1em sans-serif;
+    width: 24px;
+    height: 24px;
+    margin: 0 .25em 0 0;
+    padding: 0;
+    vertical-align: top;
+    cursor: pointer;
+}
+
+.form_group_login input[type="checkbox"]:checked + label:before {
+    background: #a05d26;
+    color: #fff;
+    content: "\2713";
+    text-align: center;
+}
+
+.form_group_login input[type="checkbox"]:checked + label:after {
+    font-weight: bold;
+}
+
+.form_group_login input[type="checkbox"]:focus + label::before {
+    outline: rgb(59, 153, 252) auto 5px;
+}
+
+#remember_label {
+    margin: 0;
+    cursor: pointer;
+}
+
+#login_wrapper p.invalid-feedback {
+    margin-left: 255px;
+    padding-bottom: 0;
+}
+
+#login_wrapper button {
+    background: #a05d26;
+    color: #fff;
+    border: 2px solid #b5692a;
+    border-radius: 5px;
+    height: 40px;
+    padding: 0 20px 0 20px;
+    margin-right: 20px;
+}
+
+#login_wrapper form div#social_login_row div:nth-child(2) > a {
+    margin-right: 10px;
+    height: 40px;
+    color: #b5692a;
+}
+
+#login_wrapper div:nth-child(2) svg {
+    width: 25px;
+    height: 25px;
+}
+
+#social_login_title {
+    padding: 25px 0 0 0;
+}
+
+input#email.is_invalid, #password.is_invalid {
+    border: 2px solid red;
+}
+
+.login_form_status {
+    color: #89b970;
+    width: 450px;
+    font-weight: bold;
+    margin: 0 auto;
+    text-align: center;
+}
+
+@media screen and (max-width: 767px) {
+    div#login_wrapper {
+        width: 540px;
+        align-items: center;
+    }
+
+    div.form_group_login {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    div.form_group_login div:nth-child(1) {
+        justify-content: flex-start;
+        width: 330px;
+    }
+
+    #remember_me_row {
+        margin-top: 25px;
+        margin-bottom: 25px;
+        align-items: flex-start;
+    }
+
+    #remember_me_row div:nth-child(1) {
+        width: 0;
+    }
+
+    div#login_buttons_row {
+        align-items: flex-start;
+    }
+
+    div#login_buttons_row div:nth-child(1) {
+        width: 0;
+    }
+
+    #social_login_row div:nth-child(2) a {
+        margin: 0 25px 0 25px;
+    }
+
+    #login_wrapper form div:nth-child(2) a > svg {
+        width: 40px;
+        height: 40px;
+    }
+
+    .login_form_status {
+        width: 330px;
+    }
+}
+
+@media screen and (max-width: 579px) {
+    div#login_wrapper {
+        width: 350px;
+    }
+
+    div.form_group_login div:nth-child(1),
+    .form_group_login input[type="text"],
+    .form_group_login input[type="email"],
+    .form_group_login input[type="password"] {
+        width: 270px;
+    }
+}
+
+@media screen and (max-width: 383px) {
+    div#login_wrapper {
+        width: 300px;
+    }
+
+    #remember_me_row {
+        margin-top: 45px;
+        margin-bottom: 45px;
+        align-items: flex-start;
+    }
+}
