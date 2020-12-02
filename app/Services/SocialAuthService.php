@@ -5,6 +5,7 @@ namespace App\Services;
 
 use App\User;
 use App\SocialLogin;
+use Carbon\Carbon;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
 use Laravel\Socialite\Contracts\User as ProviderUser;
@@ -23,17 +24,19 @@ class SocialAuthService
 
             $account = new SocialLogin([
                 'provider_user_id' => $providerUser->getId(),
-                'provider' => '$provider'
+                'provider' => $provider
             ]);
 
-            $user = User::whereEmail($providerUser->getEmail())->first();
+            $email = $providerUser->getEmail() ?? preg_replace('/[^a-zа-я]/ui', '', ($providerUser->getName() ?? 'name')) . '@' . $provider . '.com';
+            $user = User::whereEmail($email)->first();
 
             if (!$user) {
 
                 $user = User::create([
-                    'email' => $providerUser->getEmail() ?? preg_replace('/[^a-zа-я]/ui', '', ($providerUser->getName() ?? 'name')) . '@' . $provider . '.com',
+                    'email' => $email,
                     'name' => $providerUser->getName(),
                     'password' => Hash::make(Str::random(40)),
+                    'email_verified_at' => Carbon::now()->format('Y-m-d h:i:s'),
                 ]);
             }
 
