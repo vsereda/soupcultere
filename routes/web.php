@@ -15,9 +15,14 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Auth::routes();
+Auth::routes(['verify' => true]);
 
-Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/home', 'HomeController@index')->name('home')->middleware('verified');
+
+//Route::get('/home', 'HomeController@indexSoup')->name('home');
+Route::get('/menu', 'HomeController@menuSoup')->name('menu');
+Route::get('/delivery', 'HomeController@deliverySoup')->name('delivery');
+Route::get('/about', 'HomeController@aboutSoup')->name('about');
 
 Route::get('/facebook/redirect', 'SocialAuthController@facebookRedirect');
 Route::get('/facebook/callback', 'SocialAuthController@facebookCallback');
