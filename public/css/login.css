@@ -47,6 +47,10 @@
     outline: none;
 }
 
+.form_group_login input::placeholder {
+    color: #4a4a4a;
+}
+
 /*#remember_me_group {*/
 /*    width: 350px;*/
 /*}*/

@@ -37,6 +37,34 @@
 
                 <div class="form_group_login">
                     <div>
+                        <label for="phone">{{ __('Phone number') }}</label>
+                    </div>
+                    <div>
+                        <input id="phone" type="text" name="phone" value="{{ old('phone') }}" required autocomplete="soupcultere-phone" placeholder="example: 0981234567">
+                    </div>
+                </div>
+                @error('phone')
+                <p class="invalid-feedback" role="alert">
+                    <strong>{{ $message }}</strong>
+                </p>
+                @enderror
+
+                <div class="form_group_login">
+                    <div>
+                        <label for="address">{{ __('Delivery Address') }}</label>
+                    </div>
+                    <div>
+                        <input id="address" type="text" name="address" value="{{ old('address') }}" required autocomplete="soupcultere-address" placeholder="example: StreetName and number">
+                    </div>
+                </div>
+                @error('address')
+                <p class="invalid-feedback" role="alert">
+                    <strong>{{ $message }}</strong>
+                </p>
+                @enderror
+
+                <div class="form_group_login">
+                    <div>
                         <label for="password">{{ __('Password') }}</label>
                     </div>
                     <div>
