@@ -144,7 +144,9 @@
     </div>
 </header>
 
+<main>
 @yield('content')
+</main>
 
 <footer>
     <div class="center_box">
