@@ -3,6 +3,8 @@
 @section('content')
     <div class="center_box">
         <h2>О нас</h2>
+        @component('components.info')
+        @endcomponent
         <div id="about-wrapper">
             <div class="nav-pictures">
                 <img src="images/input.jpg" id="imput_img">

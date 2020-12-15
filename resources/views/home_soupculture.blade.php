@@ -3,6 +3,8 @@
 @section('content')
     <div class="center_box">
         <h2>Главная</h2>
+        @component('components.info')
+        @endcomponent
         <div id="main-wrapper">
             <h2>Супкультура - это новая культура питания!</h2>
             <p>В том темпе жизни, в котором живет Харьков, уличная еда стала просто незаменимой. Но вместо того,

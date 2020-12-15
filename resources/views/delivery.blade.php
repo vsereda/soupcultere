@@ -3,6 +3,8 @@
 @section('content')
     <div class="center_box">
         <h2>Доставка и оплата</h2>
+        @component('components.info')
+        @endcomponent
         <div id="delivery-wrapper">
             <article>
                 <p>
