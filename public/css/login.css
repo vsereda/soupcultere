@@ -147,12 +147,12 @@ input#email.is_invalid, #password.is_invalid {
     margin: 0;
     padding: 0;
     border: 0;
-    display: contents;
 }
 
 .verify_message_wrapper button {
     cursor: pointer;
     text-decoration: underline;
+    display: contents;
 }
 
 @media screen and (max-width: 767px) {
