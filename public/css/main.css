@@ -5,3 +5,10 @@
 .text_decorated {
     text-decoration: underline;
 }
+
+#app {
+    min-height: 99.5vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}

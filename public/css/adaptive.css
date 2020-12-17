@@ -85,7 +85,7 @@
         /*flex-direction: column;*/
     }
 
-    body > header > div > div.hamburger-menu {
+    body header > div > div.hamburger-menu {
         /*flex-direction: column;*/
     }
 
@@ -98,7 +98,7 @@
     }
 }
 
-body > header > div.center_box {
+body header > div.center_box {
     min-width: max-content;
 }
 

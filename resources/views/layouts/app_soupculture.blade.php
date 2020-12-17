@@ -10,7 +10,7 @@
     <title>{{ config('app.name', 'Laravel') }}</title>
 
     <!-- Scripts -->
-{{--    <script src="{{ asset('js/app.js') }}" defer></script>--}}
+    <script src="{{ asset('js/app.js') }}" defer></script>
 
     <!-- Styles -->
     {{--    <link href="{{ asset('css/app.css') }}" rel="stylesheet">--}}
@@ -25,6 +25,7 @@
     <link rel="shortcut icon" href="{{ asset('images/favicon.ico') }}" type="image/x-icon">
 </head>
 <body>
+<div id="app">
 <header>
     <div class="center_box">
         <div id="logo">
@@ -161,5 +162,6 @@
         </div>
     </div>
 </footer>
+</div>
 </body>
 </html>
