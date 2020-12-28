@@ -31,16 +31,18 @@
 
 .form_group_login input[type="text"],
 .form_group_login input[type="email"],
-.form_group_login input[type="password"] {
+.form_group_login input[type="password"],
+.form_group_login textarea {
     width: 330px;
     height: 40px;
     border: 2px solid #b5692a;
     border-radius: 8px;
     background-color: #a05d26;
-    font-size: 20px;
+    font-size: 16px;
     font-family: MyUbuntu, sans-serif;
     color: #fff;
     padding: 0 8px 0 8px;
+    text-overflow: ellipsis;
 }
 
 .form_group_login input:focus {
@@ -214,7 +216,32 @@ input#email.is_invalid, #password.is_invalid {
     padding: 0 25px;
 }
 
+ul.autocomplete-results {
+    position: absolute;
+    background: #864d1f;
+    border: 2px solid #b5692a;
+    border-radius: 8px;
+    /*padding: 6px 0;*/
+    width: 330px;
+    list-style: inside;
+    margin-top: 8px;
+    max-height: 350px;
+    overflow: hidden;
+    overflow-y: auto;
+}
+
+ul.autocomplete-results li {
+    padding: 6px 10px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
 @media screen and (max-width: 579px) {
+    .form_group_login ul {
+        width: 270px;
+    }
+
     div#login_wrapper {
         width: 350px;
     }

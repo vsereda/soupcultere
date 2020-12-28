@@ -12,3 +12,7 @@
     flex-direction: column;
     justify-content: center;
 }
+
+.is-active {
+    background: #b5692a;
+}
