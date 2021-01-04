@@ -19,7 +19,7 @@ class SocialAuthController extends Controller
         $user = $service->createOrGetUserFacebook(Socialite::driver($driverName)->user(), $driverName);
         auth()->login($user);
 
-        return redirect()->to('/home/#');
+        return redirect()->to('/#');
     }
 
     public function googleRedirect()

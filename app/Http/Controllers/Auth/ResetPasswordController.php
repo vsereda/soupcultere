@@ -27,7 +27,12 @@ class ResetPasswordController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = RouteServiceProvider::HOME;
+
+    protected $redirectTo;
+
+    public function __construct() {
+        $this->redirectTo = route('home');
+    }
 
     /**
      * Display the password reset view for the given token.

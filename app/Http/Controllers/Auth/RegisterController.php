@@ -29,7 +29,7 @@ class RegisterController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = RouteServiceProvider::HOME;
+    protected $redirectTo;
 
     /**
      * Create a new controller instance.
@@ -38,6 +38,7 @@ class RegisterController extends Controller
      */
     public function __construct()
     {
+        $this->redirectTo = route('home');
         $this->middleware('guest');
     }
 
@@ -53,6 +54,8 @@ class RegisterController extends Controller
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
+            'your-address' => ['required_without:address-confirmed', 'nullable', 'string', 'min:3'],
+            'address-confirmed' => ['required_without:your-address', 'nullable', 'string', 'min:3'],
             'phone' => ['required', 'regex:/^0(\d){9}$/i', 'unique:users'],
         ]);
     }
@@ -80,6 +83,6 @@ class RegisterController extends Controller
      */
     public function showRegistrationForm()
     {
-        return view('auth.register_soupculture');
+        return view('auth.register_soupculture', ['oldAddress' => old('your-address') ?? '']);
     }
 }
