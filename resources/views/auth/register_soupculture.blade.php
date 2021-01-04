@@ -12,7 +12,14 @@
                         <label for="name">{{ __('Name') }}</label>
                     </div>
                     <div>
-                        <input id="name" type="text" name="name" value="{{ old('name') }}" required autocomplete="soupcultere-name" class="@error('email') is_invalid @enderror">
+                        <input
+                            id="name"
+                            type="text"
+                            name="name"
+                            value="{{ old('name') }}"
+                            required
+                            autocomplete="soupcultere-name"
+                            class="@error('email') is_invalid @enderror">
                     </div>
                 </div>
                 @error('name')
@@ -26,7 +33,14 @@
                         <label for="email">{{ __('E-Mail Address') }}</label>
                     </div>
                     <div>
-                        <input id="email" type="email" name="email" value="{{ old('email') }}" required autocomplete="soupcultere-email">
+                        <input
+                            id="email"
+                            type="email"
+                            name="email"
+                            value="{{ old('email') }}"
+                            required
+                            autocomplete="soupcultere-email"
+                        >
                     </div>
                 </div>
                 @error('email')
@@ -40,7 +54,15 @@
                         <label for="phone">{{ __('Phone number') }}</label>
                     </div>
                     <div>
-                        <input id="phone" type="text" name="phone" value="{{ old('phone') }}" required autocomplete="soupcultere-phone" placeholder="example: 0981234567">
+                        <input
+                            id="phone"
+                            type="text"
+                            name="phone"
+                            value="{{ old('phone') }}"
+                            required
+                            autocomplete="soupcultere-phone"
+                            placeholder="example: 0981234567"
+                        >
                     </div>
                 </div>
                 @error('phone')
@@ -49,15 +71,28 @@
                 </p>
                 @enderror
 
-                <div class="form_group_login">
-                    <div>
-                        <label for="address">{{ __('Delivery Address') }}</label>
-                    </div>
-                    <div>
-                        <input id="address" type="text" name="address" value="{{ old('address') }}" required autocomplete="soupcultere-address" placeholder="example: StreetName and number">
-                    </div>
-                </div>
-                @error('address')
+                <addresses-autocomplete
+                    label-i-d-value="address-confirmed"
+                    label-value="Confirmed delivery address"
+                    input-name-value="address-confirmed"
+                    v-on:autocomlete_change="setAddressListChange($event)"
+                    :is-loading-outside="false"
+                    :reset-value="yourAddressChange"
+                    :items="[{'id': 201, 'name': 'Apple Apple Apple Apple Apple Apple Apple Apple Apple Apple Apple '},{'id': 2111, 'name': 'Apple'},{'id': 21, 'name': 'Apple1'},{'id': 21, 'name': 'Apple2'},{'id': 21, 'name': 'Apple3'},{'id': 21, 'name': 'Apple4'},{'id': 21, 'name': 'Apple5'},{'id': 21, 'name': 'Apple6'},{'id': 21, 'name': 'Apple7'}, {'id': 22, 'name': 'BananaonArrowDownssssssssssssssssssssssssssssssssssssssssss'}, {'id': 23, 'name': 'Grape'}, {'id': 24, 'name': 'Pineapple'}]"
+                ></addresses-autocomplete>
+                @error('address-confirmed')
+                <p class="invalid-feedback" role="alert">
+                    <strong>{{ $message }}</strong>
+                </p>
+                @enderror
+                <your-address
+                    :reset-value="addressSelectedListChange"
+                    :label-value="'Or your delivery Address'"
+                    :old-value='@json($oldAddress)'
+                    v-on:your_address_result="setAddressSelectedYour($event)"
+                >
+                </your-address>
+                @error('your-address')
                 <p class="invalid-feedback" role="alert">
                     <strong>{{ $message }}</strong>
                 </p>
@@ -68,7 +103,14 @@
                         <label for="password">{{ __('Password') }}</label>
                     </div>
                     <div>
-                        <input id="password" type="password" name="password" required autocomplete="soupcultere-new-password" class="@error('password') is_invalid @enderror">
+                        <input
+                            id="password"
+                            type="password"
+                            name="password"
+                            required
+                            autocomplete="soupcultere-new-password"
+                            class="@error('password') is_invalid @enderror"
+                        >
                     </div>
                 </div>
                 @error('password')
@@ -82,7 +124,14 @@
                         <label for="password-confirm">{{ __('Confirm Password') }}</label>
                     </div>
                     <div>
-                        <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required autocomplete="soupcultere-new-password">
+                        <input
+                            id="password-confirm"
+                            type="password"
+                            class="form-control"
+                            name="password_confirmation"
+                            required
+                            autocomplete="soupcultere-new-password"
+                        >
                     </div>
                 </div>
 
