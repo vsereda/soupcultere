@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Auth;
 
+use App\Address;
 use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
 use App\User;
@@ -68,12 +69,17 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
-        return User::create([
+        $addressConfirmed = $data['address-confirmed'];
+        $yourAddress = $data['your-address'];
+        $address = Address::firstOrCreate(['description' => $yourAddress ?? $addressConfirmed, 'confirmed' => false]);
+        $user = User::create([
             'name' => $data['name'],
             'email' => $data['email'],
             'phone' => $data['phone'],
             'password' => Hash::make($data['password']),
         ]);
+        $address->users()->save($user);
+        return $user;
     }
 
     /**
