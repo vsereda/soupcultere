@@ -3,11 +3,13 @@
 namespace App;
 
 use Illuminate\Contracts\Auth\MustVerifyEmail;
-use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Illuminate\Foundation\Auth\User as Authenticatable;
+//use Laratrust\Traits\LaratrustUserTrait;
 
 class User extends Authenticatable implements MustVerifyEmail
 {
+//    use LaratrustUserTrait;
     use Notifiable;
 
     /**
@@ -16,7 +18,7 @@ class User extends Authenticatable implements MustVerifyEmail
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password', 'phone', 'email_verified_at'
+        'name', 'email', 'password', 'phone', 'login', 'address_id', 'email_verified_at'
     ];
 
     /**
@@ -27,6 +29,16 @@ class User extends Authenticatable implements MustVerifyEmail
     protected $hidden = [
         'password', 'remember_token',
     ];
+
+    public function address()
+    {
+        return $this->belongsTo('App\Address');
+    }
+
+    public function orders()
+    {
+        return $this->hasMany('App\Order');
+    }
 
     /**
      * The attributes that should be cast to native types.
