@@ -19,6 +19,7 @@
     <link rel="stylesheet" href="{{ asset('css/menu.css') }}">
     <link rel="stylesheet" href="{{ asset('css/about.css') }}">
     <link rel="stylesheet" href="{{ asset('css/login.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/cart.css') }}">
 
     <link rel="stylesheet" href="{{ asset('css/adaptive.css') }}">
 
