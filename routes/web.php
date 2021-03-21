@@ -23,6 +23,7 @@ Route::middleware(['verified.custom', 'check.user.address'])->group(function () 
     Route::get('/menu', 'HomeController@menuSoup')->name('menu');
     Route::get('/delivery', 'HomeController@deliverySoup')->name('delivery');
     Route::get('/about', 'HomeController@aboutSoup')->name('about');
+    Route::resource('/cart', 'CartController');
 });
 
 Route::get('/facebook/redirect', 'SocialAuthController@facebookRedirect');
