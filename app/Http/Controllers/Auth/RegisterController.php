@@ -71,7 +71,7 @@ class RegisterController extends Controller
     {
         $addressConfirmed = $data['address-confirmed'];
         $yourAddress = $data['your-address'];
-        $address = Address::firstOrCreate(['description' => $yourAddress ?? $addressConfirmed, 'confirmed' => false]);
+        $address = Address::firstOrCreate(['description' => $addressConfirmed ?? $yourAddress]);
         $user = User::create([
             'name' => $data['name'],
             'email' => $data['email'],
@@ -89,6 +89,12 @@ class RegisterController extends Controller
      */
     public function showRegistrationForm()
     {
-        return view('auth.register_soupculture', ['oldAddress' => old('your-address') ?? '']);
+        $addresses = Address::where('confirmed', 1)->get()
+            ->map(function ($item, $key) {
+                return ['id' => $item->getAttribute('id'), 'name' => $item->getAttribute('description')];
+            })
+            ->toArray();
+        $oldAddress = old('your-address') ?? '';
+        return view('auth.register_soupculture', compact(['oldAddress', 'addresses']));
     }
 }

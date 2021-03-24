@@ -78,7 +78,7 @@
                     v-on:autocomlete_change="setAddressListChange($event)"
                     :is-loading-outside="false"
                     :reset-value="yourAddressChange"
-                    :items="[{'id': 201, 'name': 'Apple Apple Apple Apple Apple Apple Apple Apple Apple Apple Apple '},{'id': 2111, 'name': 'Apple'},{'id': 21, 'name': 'Apple1'},{'id': 21, 'name': 'Apple2'},{'id': 21, 'name': 'Apple3'},{'id': 21, 'name': 'Apple4'},{'id': 21, 'name': 'Apple5'},{'id': 21, 'name': 'Apple6'},{'id': 21, 'name': 'Apple7'}, {'id': 22, 'name': 'BananaonArrowDownssssssssssssssssssssssssssssssssssssssssss'}, {'id': 23, 'name': 'Grape'}, {'id': 24, 'name': 'Pineapple'}]"
+                    :items='@json($addresses)'
                 ></addresses-autocomplete>
                 @error('address-confirmed')
                 <p class="invalid-feedback" role="alert">

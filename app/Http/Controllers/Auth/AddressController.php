@@ -19,7 +19,13 @@ class AddressController extends Controller
 
     public function registerForm()
     {
-        return view('auth.register_address_soupculture', ['oldAddress' => old('your-address') ?? '']);
+        $confirmedAddresses = Address::where('confirmed', 1)->get()
+            ->map(function ($item, $key) {
+                return ['id' => $item->getAttribute('id'), 'name' => $item->getAttribute('description')];
+            })
+            ->toArray();
+        $oldAddress = old('your-address') ?? '';
+        return view('auth.register_address_soupculture', compact('oldAddress', 'confirmedAddresses'));
     }
 
     /**
@@ -33,7 +39,7 @@ class AddressController extends Controller
         $this->validator($request->all())->validate();
         $addressConfirmed = $request->get('address-confirmed');
         $yourAddress = $request->get('your-address');
-        $address = Address::firstOrCreate(['description' => $yourAddress ?? $addressConfirmed, 'confirmed' => false]);
+        $address = Address::firstOrCreate(['description' => $addressConfirmed ?? $yourAddress]);
         $user = $request->user();
         $address->users()->save($user);
         return redirect()->route('home');
