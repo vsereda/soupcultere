@@ -2,14 +2,14 @@
 
 namespace App\Http\Controllers\Auth;
 
-use App\Address;
+use App\Models\Address;
 use App\Http\Controllers\Controller;
-use App\User;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 
-class AddressController extends Controller
+class AdditionalDataController extends Controller
 {
     public function __construct()
     {
@@ -19,13 +19,23 @@ class AddressController extends Controller
 
     public function registerForm()
     {
+        $user = auth()->user();
         $confirmedAddresses = Address::where('confirmed', 1)->get()
             ->map(function ($item, $key) {
                 return ['id' => $item->getAttribute('id'), 'name' => $item->getAttribute('description')];
             })
             ->toArray();
         $oldAddress = old('your-address') ?? '';
-        return view('auth.register_address_soupculture', compact('oldAddress', 'confirmedAddresses'));
+        $phone_exists = (boolean)$user->getAttribute('phone');
+        $address_exists = $user->address instanceof Address;
+
+        if ($phone_exists && $address_exists) {
+            return redirect()->route('home');
+        }
+
+        return view('auth.register_additional_data_soupculture',
+            compact('oldAddress', 'confirmedAddresses', 'phone_exists', 'address_exists')
+        );
     }
 
     /**
@@ -38,10 +48,17 @@ class AddressController extends Controller
     {
         $this->validator($request->all())->validate();
         $addressConfirmed = $request->get('address-confirmed');
+        $phone = (int) $request->get('phone');
         $yourAddress = $request->get('your-address');
-        $address = Address::firstOrCreate(['description' => $addressConfirmed ?? $yourAddress]);
         $user = $request->user();
-        $address->users()->save($user);
+        if($phone && (null === $user->phone)) {
+            $user->phone = $phone;
+            $user->save();
+        }
+        if($yourAddress && $addressConfirmed && !$user->address) {
+            $address = Address::firstOrCreate(['description' => $addressConfirmed ?? $yourAddress]);
+            $address->users()->save($user);
+        }
         return redirect()->route('home');
     }
 
@@ -54,8 +71,23 @@ class AddressController extends Controller
     protected function validator(array $data)
     {
         return Validator::make($data, [
-            'your-address' => ['required_without:address-confirmed', 'nullable', 'string', 'min:3'],
-            'address-confirmed' => ['required_without:your-address', 'nullable', 'string', 'min:3'],
+            'phone' => [
+//                'required',
+                'regex:/^0(\d){9}$/i',
+                'unique:users'
+            ],
+            'your-address' => [
+//                'required_without:address-confirmed',
+                'nullable',
+                'string',
+                'min:3'
+            ],
+            'address-confirmed' => [
+//                'required_without:your-address',
+                'nullable',
+                'string',
+                'min:3'
+            ],
         ]);
     }
 }

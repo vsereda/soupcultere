@@ -5,7 +5,7 @@ namespace App\Http\Middleware;
 use Closure;
 use Illuminate\Support\Facades\Redirect;
 
-class CheckUserAddress
+class CheckUserAdditionalData
 {
     /**
      * Handle an incoming request.
@@ -17,7 +17,7 @@ class CheckUserAddress
     public function handle($request, Closure $next)
     {
         $user = $request->user();
-        if (!$user || ($user && $user->address)) {
+        if (!$user || ($user && $user->address && $user->phone)) {
             return $next($request);
         }
         return Redirect::route('address_register');
