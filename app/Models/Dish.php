@@ -1,6 +1,6 @@
 <?php
 
-namespace App;
+namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
@@ -10,13 +10,13 @@ class Dish extends Model
 
     public function dishServings()
     {
-        return $this->hasMany('App\DishServing', 'dish_id', 'id');
+        return $this->hasMany('App\Models\DishServing', 'dish_id', 'id');
     }
 
     public function servings()
     {
         return $this->belongsToMany(
-            'App\Serving',
+            'App\Models\Serving',
             'dish_serving',
             'dish_id',
             'serving_id',

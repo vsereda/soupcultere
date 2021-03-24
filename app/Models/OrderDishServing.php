@@ -1,6 +1,6 @@
 <?php
 
-namespace App;
+namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 //use CoenJacobs\EloquentCompositePrimaryKeys\HasCompositePrimaryKey;
@@ -16,11 +16,11 @@ class OrderDishServing extends Model
 
     public function order()
     {
-        $this->belongsTo('App\Order', 'order_id', 'id');
+        $this->belongsTo('App\Models\Order', 'order_id', 'id');
     }
 
     public function dishServing()
     {
-        return $this->belongsTo('App\DishServing', ['dish_id', 'serving_id'], ['dish_id', 'serving_id']);
+        return $this->belongsTo('App\Models\DishServing', ['dish_id', 'serving_id'], ['dish_id', 'serving_id']);
     }
 }

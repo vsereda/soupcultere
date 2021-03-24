@@ -1,6 +1,6 @@
 <?php
 
-namespace App;
+namespace App\Models;
 
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Notifications\Notifiable;
@@ -32,12 +32,12 @@ class User extends Authenticatable implements MustVerifyEmail
 
     public function address()
     {
-        return $this->belongsTo('App\Address');
+        return $this->belongsTo('App\Models\Address');
     }
 
     public function orders()
     {
-        return $this->hasMany('App\Order');
+        return $this->hasMany('App\Models\Order');
     }
 
     /**

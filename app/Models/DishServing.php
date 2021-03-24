@@ -1,6 +1,6 @@
 <?php
 
-namespace App;
+namespace App\Models;
 
 //use CoenJacobs\EloquentCompositePrimaryKeys\HasCompositePrimaryKey;
 use Illuminate\Database\Eloquent\Relations\Pivot;
@@ -15,16 +15,16 @@ class DishServing extends Pivot
 
     public function dish()
     {
-        return $this->belongsTo('App\Dish');
+        return $this->belongsTo('App\Models\Dish');
     }
 
     public function serving()
     {
-        return $this->belongsTo('App\Serving');
+        return $this->belongsTo('App\Models\Serving');
     }
 
     public function orderDishServings()
     {
-        return $this->hasMany('App\OrderDishServing', ['dish_id', 'serving_id'], ['dish_id', 'serving_id']);
+        return $this->hasMany('App\Models\OrderDishServing', ['dish_id', 'serving_id'], ['dish_id', 'serving_id']);
     }
 }
