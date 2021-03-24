@@ -18,8 +18,8 @@ class CreateOrdersTable extends Migration
             $table->enum('dinner_time', ['1', '2', '3', '4']);
             $table->enum('status', ['1', '2', '3', '4', '5'])->default('1');
             $table->date('execution');
-            $table->boolean('sms')->default(false);
             $table->unsignedBigInteger('user_id');
+            $table->boolean('sms')->default(false);
             $table->unsignedBigInteger('courier_id')->nullable();
             $table->timestamps();
             $table->foreign('user_id')->references('id')->on('users');

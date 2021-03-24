@@ -14,8 +14,8 @@ class CreateDishServingTable extends Migration
     public function up()
     {
         Schema::create('dish_serving', function (Blueprint $table) {
-            $table->unsignedBigInteger('dish_id');
-            $table->unsignedBigInteger('serving_id');
+            $table->unsignedInteger('dish_id');
+            $table->unsignedInteger('serving_id');
             $table->unsignedInteger('price');
             $table->foreign('dish_id')->references('id')->on('dishes');
             $table->foreign('serving_id')->references('id')->on('servings');

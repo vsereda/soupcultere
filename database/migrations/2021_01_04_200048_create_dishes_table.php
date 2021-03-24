@@ -14,9 +14,9 @@ class CreateDishesTable extends Migration
     public function up()
     {
         Schema::create('dishes', function (Blueprint $table) {
-            $table->bigIncrements('id');
+            $table->increments('id');
             $table->string('title')->unique();
-            $table->text('description')->change();
+            $table->text('description');
             $table->text('composition');
             $table->boolean('seasonal')->default(false);
             $table->boolean('active')->default(true);
