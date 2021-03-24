@@ -3,8 +3,8 @@
 
 namespace App\Services;
 
-use App\User;
-use App\SocialLogin;
+use App\Models\User;
+use App\Models\SocialLogin;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
