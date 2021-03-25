@@ -1,5 +1,6 @@
 main .center_box a {
     color: #fff;
+    outline: none;
 }
 
 main .center_box p {

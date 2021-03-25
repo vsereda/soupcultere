@@ -114,6 +114,8 @@
     height: 40px;
     padding: 0 20px 0 20px;
     margin-right: 20px;
+    cursor: pointer;
+    outline: none;
 }
 
 #login_wrapper form div#social_login_row div:nth-child(2) > a {
