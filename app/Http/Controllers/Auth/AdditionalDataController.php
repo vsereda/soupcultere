@@ -46,16 +46,21 @@ class AdditionalDataController extends Controller
      */
     public function register(Request $request)
     {
-        $this->validator($request->all())->validate();
+        $user = $request->user();
+        $userPhone = $user->getAttribute('phone');
+        $userAddress = $user->address;
+
+        $this->validator($request->all(), $userAddress, $userPhone)->validate();
+
+        $yourAddress = $request->get('your-address');
         $addressConfirmed = $request->get('address-confirmed');
         $phone = (int) $request->get('phone');
-        $yourAddress = $request->get('your-address');
-        $user = $request->user();
-        if($phone && (null === $user->phone)) {
+
+        if($phone && (null === $user->getAttribute('phone'))) {
             $user->phone = $phone;
             $user->save();
         }
-        if($yourAddress && $addressConfirmed && !$user->address) {
+        if(($addressConfirmed ?? $yourAddress) && !$user->address) {
             $address = Address::firstOrCreate(['description' => $addressConfirmed ?? $yourAddress]);
             $address->users()->save($user);
         }
@@ -68,26 +73,13 @@ class AdditionalDataController extends Controller
      * @param array $data
      * @return \Illuminate\Contracts\Validation\Validator
      */
-    protected function validator(array $data)
+    protected function validator(array $data, $userAddress, $userPhone)
     {
-        return Validator::make($data, [
-            'phone' => [
-//                'required',
-                'regex:/^0(\d){9}$/i',
-                'unique:users'
-            ],
-            'your-address' => [
-//                'required_without:address-confirmed',
-                'nullable',
-                'string',
-                'min:3'
-            ],
-            'address-confirmed' => [
-//                'required_without:your-address',
-                'nullable',
-                'string',
-                'min:3'
-            ],
-        ]);
+        $rules = [
+            'phone' => ($userPhone ? '' : 'required|') . 'regex:/^0(\d){9}$/i|unique:users',
+            'your-address' => ($userAddress ? '' : 'required_without:address-confirmed|') . 'nullable|string|min:3',
+            'address-confirmed' => ($userAddress ? '' : 'required_without:your-address|') . 'nullable|string|min:3',
+        ];
+        return Validator::make($data, $rules);
     }
 }

@@ -17,7 +17,7 @@ class CheckUserAdditionalData
     public function handle($request, Closure $next)
     {
         $user = $request->user();
-        if (!$user || ($user && $user->address && $user->phone)) {
+        if (!$user || ($user && $user->address && $user->getAttribute('phone'))) {
             return $next($request);
         }
         return Redirect::route('address_register');
