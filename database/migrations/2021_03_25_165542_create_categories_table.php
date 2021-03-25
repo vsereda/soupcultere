@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateDishesTable extends Migration
+class CreateCategoriesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,14 +13,10 @@ class CreateDishesTable extends Migration
      */
     public function up()
     {
-        Schema::create('dishes', function (Blueprint $table) {
+        Schema::create('categories', function (Blueprint $table) {
             $table->increments('id');
             $table->string('title')->unique();
             $table->text('description');
-            $table->text('composition');
-            $table->boolean('seasonal')->default(false);
-            $table->boolean('active')->default(true);
-            $table->unsignedInteger('category_id')->nullable();
             $table->string('img');
             $table->timestamps();
         });
@@ -33,6 +29,6 @@ class CreateDishesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('dishes');
+        Schema::dropIfExists('categories');
     }
 }
