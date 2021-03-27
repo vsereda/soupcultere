@@ -162,6 +162,7 @@ header, header .center_box {
     font-weight: bold;
     font-style: italic;
     border-bottom: 2px solid #b5692a;
+    z-index: 1000;
 }
 
 header .center_box {
@@ -482,15 +483,10 @@ footer .social-bottom img {
 }
 
 .center_box {
-    /*min-width: 540px;*/
     width: 540px;
     padding-right: 10px;
     padding-left: 10px;
-    /*width: auto;*/
-    /*background-color: #a05d26;*/
-    /*border: 1px solid black;*/
 }
 
 body {
-    /*min-width: 540px;*/
 }

@@ -9,21 +9,12 @@
             менеджером Вы получите подверждение о готовности обслуживать Ваш адрес. Подробнее в разделе <a
                 href="delivery.html">"Доставка и оплата"</a></p>
         <div id="menu-wrapper">
-            <!--            <div class="category-item-wrapper">-->
-
-            <!--            </div>-->
-            <!--            <div class="category-item-wrapper">-->
-
-            <!--            </div>-->
-            <!--            <div class="category-item-wrapper">-->
-
-            <!--            </div>-->
-            <!--            <div class="category-item-wrapper">-->
-
-            <!--            </div>-->
-            <!--            <div class="category-item-wrapper">-->
-
-            <!--            </div>-->
+            @foreach($categories as $category)
+            <a href="{{ route('menu.show', $category->id) }}" class="category-item-wrapper">
+                <h2>{{ $category->title }}</h2>
+                <img src="{{ $category->img }}" />
+            </a>
+            @endforeach
         </div>
     </div>
 @endsection
