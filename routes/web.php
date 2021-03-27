@@ -21,7 +21,7 @@ Route::get('/test', 'TestController@test');
 
 Route::middleware(['verified.custom', 'check.user.additional.data'])->group(function () {
     Route::get('/', 'HomeController@indexSoup')->name('home');
-    Route::get('/menu', 'HomeController@menuSoup')->name('menu');
+    Route::resource('/menu', 'MenuController')->only(['index', 'show']);
     Route::get('/delivery', 'HomeController@deliverySoup')->name('delivery');
     Route::get('/about', 'HomeController@aboutSoup')->name('about');
 });

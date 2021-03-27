@@ -61,10 +61,10 @@
                 >
                     ГЛАВНАЯ
                 </a>
-                <a @if(Route::currentRouteName() == 'menu')
+                <a @if(Route::currentRouteName() == 'menu.index')
                    class="active_href"
                    @endif
-                   href="{{ route('menu') }}"
+                   href="{{ route('menu.index') }}"
                 >
                     МЕНЮ
                 </a>
@@ -122,7 +122,7 @@
             </label>
             <ul class="menu__box">
                 <li><a class="menu__item" href="{{ route('home') }}">ГЛАВНАЯ</a></li>
-                <li><a class="menu__item" href="{{ route('menu') }}">МЕНЮ</a></li>
+                <li><a class="menu__item" href="{{ route('menu.index') }}">МЕНЮ</a></li>
                 <li><a class="menu__item" href="{{ route('delivery') }}">ДОСТАВКА И ОПЛАТА</a></li>
                 <li><a class="menu__item" href="{{ route('about') }}">О НАС</a></li>
                 @guest
