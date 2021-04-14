@@ -1,6 +1,5 @@
 <?php
 
-use App\Models\Dish;
 use App\Models\Serving;
 use Illuminate\Database\Seeder;
 
@@ -39,19 +38,19 @@ class DishServingTableSeeder extends Seeder
         ];
 
         foreach ($mappingDishServings as $dishServing) {
-            $this->makeCurrentDishes($dishServing['servings']);
-
+            $this->currentDishes = array_flip($dishServing['dishes']);
             $servings = Serving::findMany($dishServing['servings']);
             $servings->each(function ($serving) {
-                $serving->dishes()->sync(Dish::findMany($this->currentDishes));
+                $this->makeCurrentDishesPrises();
+                $serving->dishes()->syncWithoutDetaching($this->currentDishes);
             });
         }
     }
 
-    protected function makeCurrentDishes(array $servings): void {
-        $this->currentDishes = array_flip($servings);
+    protected function makeCurrentDishesPrises(): void
+    {
         foreach ($this->currentDishes as $key => $value) {
-            $this->currentDishes[$key] = rand(50, 100);
+            $this->currentDishes[$key] = ['price' => rand(50, 100)];
         }
     }
 }
