@@ -8,4 +8,8 @@ class Category extends Model
 {
     protected $table = 'categories';
     protected $fillable = ['title', 'description'];
+
+    public function dishes() {
+        return $this->hasMany(Dish::class);
+    }
 }
