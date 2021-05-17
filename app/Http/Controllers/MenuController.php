@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Models\Category;
-use Illuminate\Http\Request;
 
 class MenuController extends Controller
 {
@@ -26,6 +25,7 @@ class MenuController extends Controller
      */
     public function show(Category $category)
     {
-
+        $category->load('dishes.dishServings.serving');
+        return view('category', compact('category'));
     }
 }
