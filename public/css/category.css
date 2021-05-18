@@ -59,13 +59,18 @@ main .center_box .dish-servings-wrapper p {
     }
 }
 
-@media screen and (max-width: 519px) {
-
-}
-
 @media screen and (max-width: 399px) {
     #category-wrapper > div > a > img {
         width: 213px;
         height: 160px;
     }
+}
+
+#category-wrapper > div.dish-wrapper > a > img.category-small-img {
+    border: 2px solid #b5692a;
+    box-shadow: none;
+}
+
+#category-wrapper > div.dish-wrapper > a > img.category-small-img:hover {
+    box-shadow: 0px 0px 9px 5px rgba(34, 60, 80, 0.2);
 }

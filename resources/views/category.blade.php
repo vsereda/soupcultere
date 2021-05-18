@@ -11,19 +11,20 @@
         <div id="category-wrapper">
             @foreach($category->dishes as $dish)
                 <div class="dish-wrapper">
-                    <a href="#">
-                        <img src="{{ $dish->img }}">
+                    <a href="{{ route('dish.index', $dish->id) }}">
+                        <img src="{{ $dish->img }}" class="category-small-img">
                     </a>
                     <div class="dish-servings-wrapper">
                         <h3>{{ $dish->title }}</h3>
                         @foreach($dish->dishServings as $dishServing)
                             <p>{{ $dishServing->serving->title }} - {{ $dishServing->price }} грн</p>
                         @endforeach
-                        <a href="#">
+                        <a href="{{ route('dish.index', $dish->id) }}">
                             Подробнее
                         </a>
                     </div>
                 </div>
             @endforeach
         </div>
+    </div>
 @endsection
