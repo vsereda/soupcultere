@@ -24,4 +24,9 @@ class Dish extends Model
             'id'
         )->withPivot('price')->withTimestamps();
     }
+
+    public function category()
+    {
+        return $this->belongsTo('App\Models\Category');
+    }
 }

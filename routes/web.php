@@ -23,6 +23,7 @@ Route::middleware(['verified.custom', 'check.user.additional.data'])->group(func
     Route::get('/', 'HomeController@indexSoup')->name('home');
     Route::get('/menu', 'MenuController@index')->name('menu.index');
     Route::get('/menu/{category}', 'MenuController@show')->name('menu.show');
+    Route::get('/dish/{dish}', 'DishController@index')->name('dish.index');
     Route::get('/delivery', 'HomeController@deliverySoup')->name('delivery');
     Route::get('/about', 'HomeController@aboutSoup')->name('about');
 });
