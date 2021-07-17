@@ -23,6 +23,7 @@ Vue.component('example-component', require('./components/ExampleComponent.vue').
 Vue.component('addresses-autocomplete', require('./components/auth/AddressesAutocomlete').default);
 Vue.component('your-address', require('./components/auth/YourAddress').default);
 Vue.component('dish-counter', require('./components/dish/DishCounter').default);
+Vue.component('dish-checkout', require('./components/dish/DishCheckout').default);
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to

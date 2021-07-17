@@ -9,19 +9,14 @@
             менеджером Вы получите подверждение о готовности обслуживать Ваш адрес. Подробнее в разделе <a
                 href="delivery.html">"Доставка и оплата"</a></p>
         <div id="dish-wrapper">
-            <img src="{{ $dish->img }}" />
-            <div id="dish-detail-wrapper">
-                <p>{{ $dish->description }}</p>
-                @if($dish->composition)
-                <p>Состав: {{ $dish->composition }}</p>
-                @endif
-                @foreach($dish->dishServings as $dishServing)
-                    <dish-counter
-                        :serving-title='@json($dishServing->serving->title)'>
-                        :price='@json($dishServing->price)'>
-                    </dish-counter>
-                @endforeach
-            </div>
+            <img src="{{ $dish->img }}"/>
+            <dish-checkout
+                :dish-servings='@json($dish->dishServings)'
+                :description='@json($dish->description)'
+                :composition='@json($dish->composition)'
+            >
+            </dish-checkout>
         </div>
+    </div>
     </div>
 @endsection

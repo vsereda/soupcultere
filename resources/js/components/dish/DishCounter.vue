@@ -2,8 +2,11 @@
     <div class="dish-counter-template">
         <div class="dish-counter-template-row">
             <span @click="minus()">
-                <svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
-                width="124px" height="124px" viewBox="0 0 124 124" style="enable-background:new 0 0 124 124;" xml:space="preserve"><g>	<path d="M112,50H12C5.4,50,0,55.4,0,62c0,6.6,5.4,12,12,12h100c6.6,0,12-5.4,12-12C124,55.4,118.6,50,112,50z"/></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g></svg>
+                <svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg"
+                     xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+                     width="124px" height="124px" viewBox="0 0 124 124" style="enable-background:new 0 0 124 124;"
+                     xml:space="preserve"><g>	<path
+                    d="M112,50H12C5.4,50,0,55.4,0,62c0,6.6,5.4,12,12,12h100c6.6,0,12-5.4,12-12C124,55.4,118.6,50,112,50z"/></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g></svg>
             </span>
             <input v-model="count">
             <span @click="plus()">
@@ -23,10 +26,6 @@ export default {
             type: String,
             default: ''
         },
-        minCount: {
-            type: Number,
-            default: 0
-        },
         maxCount: {
             type: Number,
             default: 100
@@ -34,11 +33,21 @@ export default {
         price: {
             type: Number,
             default: 0
-        }
+        },
+        dishId: {
+            type: Number,
+            default: 0
+        },
+        servingId: {
+            type: Number,
+            default: 0
+        },
+
     },
     data: function () {
         return {
             count: 0,
+            minCount: 0,
         }
     },
     methods: {
@@ -62,7 +71,7 @@ export default {
             }
             let resultCount = (Number.isNaN(newCount) ? this.minCount : formatMinMaxCont(newCount, this.minCount, this.maxCount));
             this.count = resultCount;
-            this.$emit('countChange', this.count);
+            this.$emit('countChange', {count: this.count});
         },
     }
 }

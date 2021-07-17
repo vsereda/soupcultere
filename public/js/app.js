@@ -2335,6 +2335,79 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/dish/DishCheckout.vue?vue&type=script&lang=js&":
+/*!****************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/dish/DishCheckout.vue?vue&type=script&lang=js& ***!
+  \****************************************************************************************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+/* harmony default export */ __webpack_exports__["default"] = ({
+  name: "DishCheckout",
+  props: {
+    disabled: {
+      type: Boolean,
+      "default": false
+    },
+    dishServings: {
+      "default": []
+    },
+    description: {
+      type: String,
+      "default": ''
+    },
+    composition: {
+      type: String,
+      "default": ''
+    }
+  },
+  data: function data() {
+    return {
+      dishServingCounts: {}
+    };
+  },
+  methods: {
+    changeCounts: function changeCounts(event, dishId, servingId) {
+      this.dishServingCounts[dishId + '-' + servingId] = event.count;
+    }
+  },
+  mounted: function mounted() {
+    var result = {};
+    this.dishServings.forEach(function (item, i, dishServings) {
+      result[item.dish_id + '-' + item.serving_id] = 0;
+    });
+    this.dishServingCounts = result;
+  }
+});
+
+/***/ }),
+
 /***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/dish/DishCounter.vue?vue&type=script&lang=js&":
 /*!***************************************************************************************************************************************************************************!*\
   !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/dish/DishCounter.vue?vue&type=script&lang=js& ***!
@@ -2361,6 +2434,9 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "DishCounter",
   props: {
@@ -2368,18 +2444,27 @@ __webpack_require__.r(__webpack_exports__);
       type: String,
       "default": ''
     },
-    minCount: {
-      type: Number,
-      "default": 0
-    },
     maxCount: {
       type: Number,
       "default": 100
+    },
+    price: {
+      type: Number,
+      "default": 0
+    },
+    dishId: {
+      type: Number,
+      "default": 0
+    },
+    servingId: {
+      type: Number,
+      "default": 0
     }
   },
   data: function data() {
     return {
-      count: 0
+      count: 0,
+      minCount: 0
     };
   },
   methods: {
@@ -2406,7 +2491,9 @@ __webpack_require__.r(__webpack_exports__);
 
       var resultCount = Number.isNaN(newCount) ? this.minCount : formatMinMaxCont(newCount, this.minCount, this.maxCount);
       this.count = resultCount;
-      this.$emit('countChange', this.count);
+      this.$emit('countChange', {
+        count: this.count
+      });
     }
   }
 });
@@ -39049,6 +39136,72 @@ render._withStripped = true
 
 /***/ }),
 
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/dish/DishCheckout.vue?vue&type=template&id=1753bb8c&scoped=true&":
+/*!********************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/dish/DishCheckout.vue?vue&type=template&id=1753bb8c&scoped=true& ***!
+  \********************************************************************************************************************************************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div", { attrs: { id: "dish-detail-wrapper" } }, [
+    _c("p", [_vm._v(_vm._s(_vm.description))]),
+    _vm._v(" "),
+    _c("p", [_vm._v("Состав: " + _vm._s(_vm.composition))]),
+    _vm._v(" "),
+    !_vm.disabled
+      ? _c(
+          "div",
+          { staticClass: "dish-counter-template" },
+          [
+            _vm._l(_vm.dishServings, function(dishServing) {
+              return _c("dish-counter", {
+                key: parseInt(
+                  "" + dishServing.dish_id + dishServing.serving_id
+                ),
+                attrs: {
+                  "serving-title": dishServing.serving.title,
+                  price: dishServing.price,
+                  "dish-id": dishServing.dish_id,
+                  "serving-id": dishServing.serving_id
+                },
+                on: {
+                  countChange: function($event) {
+                    return _vm.changeCounts(
+                      $event,
+                      dishServing.dish_id,
+                      dishServing.serving_id
+                    )
+                  }
+                }
+              })
+            }),
+            _vm._v(" "),
+            _c("button", [_vm._v("Заказать")])
+          ],
+          2
+        )
+      : _c("div", { staticClass: "dish-counter-template" }, [
+          _c("h2", [_vm._v("Не доступен к заказу")])
+        ]),
+    _vm._v(" "),
+    _c("p", [_vm._v(_vm._s(_vm.dishServingCounts))])
+  ])
+}
+var staticRenderFns = []
+render._withStripped = true
+
+
+
+/***/ }),
+
 /***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/dish/DishCounter.vue?vue&type=template&id=43d859b8&scoped=true&":
 /*!*******************************************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/dish/DishCounter.vue?vue&type=template&id=43d859b8&scoped=true& ***!
@@ -39175,7 +39328,9 @@ var render = function() {
       )
     ]),
     _vm._v(" "),
-    _c("p", [_vm._v(_vm._s(_vm.servingTitle) + " - 86 грн")])
+    _c("p", [
+      _vm._v(_vm._s(_vm.servingTitle) + " - " + _vm._s(_vm.price) + " грн")
+    ])
   ])
 }
 var staticRenderFns = []
@@ -51376,6 +51531,7 @@ Vue.component('example-component', __webpack_require__(/*! ./components/ExampleC
 Vue.component('addresses-autocomplete', __webpack_require__(/*! ./components/auth/AddressesAutocomlete */ "./resources/js/components/auth/AddressesAutocomlete.vue")["default"]);
 Vue.component('your-address', __webpack_require__(/*! ./components/auth/YourAddress */ "./resources/js/components/auth/YourAddress.vue")["default"]);
 Vue.component('dish-counter', __webpack_require__(/*! ./components/dish/DishCounter */ "./resources/js/components/dish/DishCounter.vue")["default"]);
+Vue.component('dish-checkout', __webpack_require__(/*! ./components/dish/DishCheckout */ "./resources/js/components/dish/DishCheckout.vue")["default"]);
 /**
  * Next, we will create a fresh Vue application instance and attach it to
  * the page. Then, you may begin adding components to this application
@@ -51663,6 +51819,75 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_YourAddress_vue_vue_type_template_id_33b268f6_scoped_true___WEBPACK_IMPORTED_MODULE_0__["render"]; });
 
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_YourAddress_vue_vue_type_template_id_33b268f6_scoped_true___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+
+
+
+/***/ }),
+
+/***/ "./resources/js/components/dish/DishCheckout.vue":
+/*!*******************************************************!*\
+  !*** ./resources/js/components/dish/DishCheckout.vue ***!
+  \*******************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _DishCheckout_vue_vue_type_template_id_1753bb8c_scoped_true___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./DishCheckout.vue?vue&type=template&id=1753bb8c&scoped=true& */ "./resources/js/components/dish/DishCheckout.vue?vue&type=template&id=1753bb8c&scoped=true&");
+/* harmony import */ var _DishCheckout_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./DishCheckout.vue?vue&type=script&lang=js& */ "./resources/js/components/dish/DishCheckout.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+
+
+/* normalize component */
+
+var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
+  _DishCheckout_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _DishCheckout_vue_vue_type_template_id_1753bb8c_scoped_true___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _DishCheckout_vue_vue_type_template_id_1753bb8c_scoped_true___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  false,
+  null,
+  "1753bb8c",
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/js/components/dish/DishCheckout.vue"
+/* harmony default export */ __webpack_exports__["default"] = (component.exports);
+
+/***/ }),
+
+/***/ "./resources/js/components/dish/DishCheckout.vue?vue&type=script&lang=js&":
+/*!********************************************************************************!*\
+  !*** ./resources/js/components/dish/DishCheckout.vue?vue&type=script&lang=js& ***!
+  \********************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_DishCheckout_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/babel-loader/lib??ref--4-0!../../../../node_modules/vue-loader/lib??vue-loader-options!./DishCheckout.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/dish/DishCheckout.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_DishCheckout_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+
+/***/ }),
+
+/***/ "./resources/js/components/dish/DishCheckout.vue?vue&type=template&id=1753bb8c&scoped=true&":
+/*!**************************************************************************************************!*\
+  !*** ./resources/js/components/dish/DishCheckout.vue?vue&type=template&id=1753bb8c&scoped=true& ***!
+  \**************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_DishCheckout_vue_vue_type_template_id_1753bb8c_scoped_true___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../node_modules/vue-loader/lib??vue-loader-options!./DishCheckout.vue?vue&type=template&id=1753bb8c&scoped=true& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/dish/DishCheckout.vue?vue&type=template&id=1753bb8c&scoped=true&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_DishCheckout_vue_vue_type_template_id_1753bb8c_scoped_true___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_DishCheckout_vue_vue_type_template_id_1753bb8c_scoped_true___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
 
 
 

@@ -3,6 +3,11 @@
     flex-direction: row;
 }
 
+#dish-wrapper > img {
+    width: 640px;
+    height: 480px;
+}
+
 #dish-detail-wrapper {
     display: flex;
     flex-direction: column;
@@ -10,6 +15,14 @@
 }
 
 /*COUNTER*/
+.dish-counter-template {
+    margin: 0;
+    padding: 0;
+}
+
+.dish-counter-template h2 {
+    font-size: 16px;
+}
 
 .dish-counter-template {
     margin: 0;
@@ -23,6 +36,15 @@
 .dish-counter-template-row {
     display: flex;
     flex-direction: row;
+}
+
+.dish-counter-template p {
+    -webkit-touch-callout: none; /* iOS Safari */
+    -webkit-user-select: none; /* Chrome/Safari/Opera */
+    -khtml-user-select: none; /* Konqueror */
+    -moz-user-select: none; /* Firefox */
+    -ms-user-select: none; /* Internet Explorer/Edge */
+    user-select: none;
 }
 
 .dish-counter-template span svg {
@@ -77,6 +99,24 @@
     display: inline;
     text-align: center;
     width: 70px;
+}
+
+#dish-detail-wrapper > div.dish-counter-template > button {
+    border: 2px solid #b5692a;
+    background: rgba(0, 0, 0, 0);
+    color: inherit;
+    width: 174px;
+    height: 50px;
+    border-radius: 22px;
+    cursor: pointer;
+}
+
+#dish-detail-wrapper > div.dish-counter-template > button:hover {
+    color: #ffed4a;
+}
+
+#dish-detail-wrapper > div.dish-counter-template > button:active {
+    border-color: rgba(181, 105, 42, 0.5);
 }
 
 /*COUNTER END*/
